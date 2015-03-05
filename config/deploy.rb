@@ -24,12 +24,34 @@
 #   end
 # end
 
+set :application, 'sinatratest'
+set :repo_url, 'git@github.com:vinaycyadav/sinatra-test.git'
+
+set :deploy_to, '/home/ubuntu/sinatratest'
+
+set :linked_files, %w{config/database.yml}
+set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+
+namespace :deploy do
+
+  desc 'Restart application'
+  task :restart do
+    on roles(:app), in: :sequence, wait: 5 do
+      execute :touch, release_path.join('tmp/restart.txt')
+    end
+  end
+
+  after :publishing, 'deploy:restart'
+  after :finishing, 'deploy:cleanup'
+end
+
+=begin
 require 'rvm/capistrano'
 require 'bundler/capistrano'
 
 #RVM and bundler settings
-set :bundle_cmd, "/home/ubuntu/.rvm/gems/ruby-2.1.2@global/bin/bundle"
-set :bundle_dir, "/home/ubuntu/.rvm/gems/ruby-2.1.2/gems"
+set :bundle_cmd, "/home/ubuntu/.rvm/gems/ruby-2.2.0@global/bin/bundle"
+set :bundle_dir, "/home/ubuntu/.rvm/gems/ruby-2.2.0/gems"
 set :rvm_ruby_string, :local
 set :rack_env, :production
 
@@ -75,3 +97,4 @@ namespace :deploy do
   task :start do
   end
 end
+=end
