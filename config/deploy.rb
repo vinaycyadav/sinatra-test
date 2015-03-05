@@ -29,7 +29,7 @@ set :repo_url, 'git@github.com:vinaycyadav/sinatra-test.git'
 
 set :deploy_to, '/home/ubuntu/sinatratest'
 
-set :linked_files, %w{config/database.yml}
+#set :linked_files, %w{config/database.yml}
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
 namespace :deploy do

@@ -3,8 +3,11 @@
 # load 'deploy/assets'
 # load 'config/deploy' # remove this line to skip loading any of the default tasks
 
+require 'capistrano/setup'
+require 'capistrano/deploy'
+
 require 'capistrano/bundler'
-require 'capistrano/rails'
+#require 'capistrano/rails'
 
 # If you are using rbenv add these lines:
 # require 'capistrano/rbenv'
@@ -13,5 +16,6 @@ require 'capistrano/rails'
 
 # If you are using rvm add these lines:
 require 'capistrano/rvm'
+
 set :rvm_type, :user
 set :rvm_ruby_version, '2.2.0'
